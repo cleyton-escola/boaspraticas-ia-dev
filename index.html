@@ -89,6 +89,82 @@
             }
         }
     </style>
+    <style media="print">
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+
+        body {
+            background-color: #fff !important;
+            color: #000 !important;
+            font-size: 11pt;
+            font-family: 'Times New Roman', serif;
+        }
+
+        header,
+        nav,
+        main>section:not(#atividades),
+        #activity-nav,
+        .activity-content label,
+        .activity-content textarea,
+        .no-print {
+            display: none !important;
+        }
+
+        .container {
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        #atividades {
+            display: block !important;
+        }
+
+        #atividades .lg\:grid,
+        #atividades .lg\:grid-cols-12 {
+            display: block !important;
+        }
+
+        #atividades .lg\:col-span-8 {
+            width: 100% !important;
+        }
+
+        .activity-content {
+            display: block !important;
+            page-break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        .bg-white,
+        .bg-blue-50,
+        .bg-gray-100 {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .border,
+        .border-l-4 {
+            border: 1px solid #ccc !important;
+        }
+
+        .rounded-lg,
+        .rounded-r-lg {
+            border-radius: 0 !important;
+        }
+
+        h2,
+        h3 {
+            text-align: left !important;
+        }
+
+        .text-gray-700,
+        .text-gray-800,
+        p {
+            color: #000 !important;
+        }
+    </style>
 </head>
 
 <body class="antialiased">
@@ -350,7 +426,13 @@
 
             <section id="atividades" class="content-section">
                 <div class="bg-white rounded-lg shadow-sm p-8 animate-fade-in">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Pratique a Criação de Prompts</h2>
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-3xl font-bold text-gray-800 text-center">Pratique a Criação de Prompts</h2>
+                        <button id="print-btn"
+                            class="no-print bg-gray-600 text-white font-bold py-2 px-4 rounded hover:bg-gray-700 transition-colors flex items-center">
+                            <span class="mr-2">🖨️</span> Imprimir Atividades
+                        </button>
+                    </div>
                     <p class="text-gray-700 mb-12 text-lg max-w-4xl mx-auto text-center">Agora é sua vez de praticar!
                         Para cada ingrediente de um bom prompt, apresentamos um cenário. Tente escrever a parte
                         correspondente do prompt no campo de texto e depois compare com nosso exemplo.</p>
@@ -515,6 +597,13 @@
             const promptContainer = document.getElementById('prompt-example-container');
             const activityBtns = document.querySelectorAll('.activity-btn');
             const activityContents = document.querySelectorAll('.activity-content');
+            const printBtn = document.getElementById('print-btn');
+
+            if (printBtn) {
+                printBtn.addEventListener('click', () => {
+                    window.print();
+                });
+            }
 
             const promptGoodHTML = `
                 <div class="prompt-good">
