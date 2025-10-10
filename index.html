@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA para Desenvolvedores: O Guia Interativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Tech -->
+    <!-- Application Structure Plan: The application transforms the linear presentation into a non-linear, interactive SPA with top-level navigation ('Início', 'Ética', 'Prompts'). This tabbed structure allows users to explore topics based on interest rather than following a rigid slide order, enhancing usability. Key interactions include clickable cards for the '5 Pilares' and '6 Ingredientes' to encourage active learning through revealing details, and a toggleable A/B comparison for the prompt examples to effectively demonstrate the contrast. This design prioritizes user-driven exploration and focused content consumption over passive scrolling. -->
+    <!-- Visualization & Content Choices: 1. Report Info: 5 Pilares do Uso Consciente -> Goal: Inform/Organize -> Viz: Interactive Cards (HTML/CSS/JS) -> Interaction: Click-to-reveal description -> Justification: Breaks down dense principles into digestible, user-controlled chunks. 2. Report Info: 6 Ingredientes de um Prompt -> Goal: Organize/Show Composition -> Viz: Donut Chart (Chart.js) + Interactive Cards -> Interaction: Hover for tooltip/Click for details -> Justification: Chart gives a visual overview of the prompt 'recipe', while cards provide detailed info on demand. 3. Report Info: Prompt Comparison -> Goal: Compare/Educate -> Viz: A/B Content Toggle (JS) -> Interaction: Button click to switch views -> Justification: Direct comparison is highly effective for learning. Library/Method: Chart.js for the donut chart, Vanilla JS for all interactions. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #3f3c36;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link.active {
+            border-bottom-color: #2563eb;
+            color: #2563eb;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #2563eb;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .interactive-card {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .interactive-card.open .card-content {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+        .interactive-card.open .chevron {
+            transform: rotate(180deg);
+        }
+        .chevron {
+            transition: transform 0.3s ease-in-out;
+        }
+        .chart-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 400px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) { 
+            .chart-container { 
+                height: 350px;
+            } 
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+
+        <header class="text-center mb-10 border-b border-gray-200 pb-6">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800">Inteligência Artificial: Seu Novo Copiloto de Desenvolvimento</h1>
+            <p class="mt-4 text-lg text-gray-600">Um guia interativo sobre boas práticas, ética e a arte do prompt perfeito.</p>
+        </header>
+
+        <nav class="flex justify-center items-center space-x-4 sm:space-x-8 mb-12">
+            <a href="#" class="nav-link text-gray-600 py-2 px-1 text-lg active" data-target="inicio">Início</a>
+            <a href="#" class="nav-link text-gray-600 py-2 px-1 text-lg" data-target="etica">Ética no Uso</a>
+            <a href="#" class="nav-link text-gray-600 py-2 px-1 text-lg" data-target="prompts">A Arte do Prompt</a>
+        </nav>
+
+        <main>
+            <section id="inicio" class="content-section active">
+                <div class="bg-white rounded-lg shadow-sm p-8 animate-fade-in">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">O que veremos hoje?</h2>
+                    <p class="text-gray-700 mb-8 text-lg">Esta aplicação interativa foi projetada para transformar a maneira como você entende e utiliza a Inteligência Artificial. Navegue pelas seções para descobrir os princípios éticos fundamentais e aprender a arte de criar prompts eficazes, transformando a IA em uma poderosa aliada no seu dia a dia de desenvolvimento.</p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h3 class="text-2xl font-semibold text-blue-800 mb-3">1. A Ética e os Bons Costumes no Uso da IA</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>O papel da IA no nosso trabalho.</li>
+                                <li>Os 5 Pilares do Uso Consciente.</li>
+                                <li>Na Prática: O que FAZER e o que NÃO FAZER.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <h3 class="text-2xl font-semibold text-green-800 mb-3">2. A Arte do Prompt: Como Pedir Corretamente</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>O que é um "Prompt"?</li>
+                                <li>A Anatomia de um Prompt Eficaz.</li>
+                                <li>Exemplos práticos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="etica" class="content-section">
+                <div class="bg-white rounded-lg shadow-sm p-8 animate-fade-in">
+                     <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Ética e Boas Práticas</h2>
+                    <p class="text-gray-700 mb-12 text-lg max-w-4xl mx-auto text-center">Nesta seção, exploramos os princípios fundamentais para utilizar a IA de forma responsável. Abordamos a IA como uma ferramenta de auxílio, os pilares éticos que devem guiar seu uso, e um guia prático de ações recomendadas e desaconselhadas para garantir um trabalho seguro e de qualidade.</p>
+
+                    <div class="bg-gray-50 rounded-lg p-6 mb-10 text-center border">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Uma Assistente Júnior Genial, Mas sem Experiência</h3>
+                        <p class="text-gray-600 max-w-3xl mx-auto">Pense na IA como um programador júnior extremamente rápido, que sabe todas as sintaxes, mas não tem contexto. Ela escreve código, mas não entende o negócio; encontra padrões, mas não sabe a prioridade do cliente. Lembre-se: <strong class="font-semibold text-red-600">a responsabilidade final é sempre SUA.</strong></p>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Os 5 Pilares do Uso Consciente</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-blue-700">1. Responsabilidade</h4>
+                                <span class="chevron text-blue-700">&#9660;</span>
+                            </div>
+                            <div class="card-content">
+                                <p class="text-gray-600">O código é seu. O bug é seu. O mérito é seu. Você é o autor final de qualquer trabalho, mesmo que gerado com auxílio da IA.</p>
+                            </div>
+                        </div>
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar2">
+                             <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-blue-700">2. Transparência</h4>
+                                <span class="chevron text-blue-700">&#9660;</span>
+                            </div>
+                            <div class="card-content">
+                                <p class="text-gray-600">Seja honesto sobre o uso da ferramenta, especialmente em ambientes acadêmicos e profissionais. Use-a para acelerar, não para enganar.</p>
+                            </div>
+                        </div>
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar3">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-blue-700">3. Privacidade</h4>
+                                 <span class="chevron text-blue-700">&#9660;</span>
+                            </div>
+                            <div class="card-content">
+                                <p class="text-gray-600">NUNCA insira dados sensíveis como senhas, APIs, dados de clientes ou código proprietário. Trate o prompt como um local público.</p>
+                            </div>
+                        </div>
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar4">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-blue-700">4. Justiça e Imparcialidade</h4>
+                                <span class="chevron text-blue-700">&#9660;</span>
+                            </div>
+                            <div class="card-content">
+                                <p class="text-gray-600">IAs podem herdar vieses. Revise sempre os resultados para garantir que sejam justos, imparciais e não ofensivos.</p>
+                            </div>
+                        </div>
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar5">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-blue-700">5. Verificação Contínua</h4>
+                                <span class="chevron text-blue-700">&#9660;</span>
+                            </div>
+                             <div class="card-content">
+                                <p class="text-gray-600">Nunca confie cegamente. Teste, revise e entenda TUDO que a IA gera. "Confie, mas verifique".</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Na Prática: O Certo e o Errado</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-green-100 border-l-4 border-green-500 p-6 rounded-r-lg">
+                            <h4 class="text-xl font-bold text-green-800 mb-4 flex items-center"><span class="text-2xl mr-3">✅</span> O que FAZER</h4>
+                            <ul class="space-y-3 text-green-900">
+                                <li>Usar para ter ideias (brainstorming).</li>
+                                <li>Pedir para explicar código complexo.</li>
+                                <li>Gerar testes e documentação.</li>
+                                <li>Pedir sugestões de refatoração.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-100 border-l-4 border-red-500 p-6 rounded-r-lg">
+                            <h4 class="text-xl font-bold text-red-800 mb-4 flex items-center"><span class="text-2xl mr-3">❌</span> O que NÃO FAZER</h4>
+                            <ul class="space-y-3 text-red-900">
+                                <li>Copiar e colar código sem entender.</li>
+                                <li>Confiar cegamente na resposta.</li>
+                                <li>Inserir qualquer dado sensível.</li>
+                                <li>Pedir para a IA "fazer o trabalho todo".</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="prompts" class="content-section">
+                <div class="bg-white rounded-lg shadow-sm p-8 animate-fade-in">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">A Arte do Prompt</h2>
+                    <p class="text-gray-700 mb-12 text-lg max-w-4xl mx-auto text-center">Aprender a "conversar" com a IA é a habilidade chave para obter resultados de alta qualidade. Aqui, detalhamos a estrutura de um prompt eficaz e demonstramos, com um exemplo prático e interativo, como a qualidade do seu pedido impacta diretamente a qualidade da resposta.</p>
+
+                    <div class="bg-gray-50 rounded-lg p-6 mb-10 text-center border">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Garbage In, Garbage Out</h3>
+                        <p class="text-gray-600 max-w-3xl mx-auto">"Lixo para Dentro, Lixo para Fora". Um **prompt** é a instrução que você dá para a IA. A qualidade da resposta é **diretamente proporcional** à qualidade do seu pedido. Um prompt vago gera uma resposta inútil; um prompt específico gera uma resposta precisa.</p>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">A Anatomia de um Prompt Eficaz</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-green-700">Persona</h4>
+                                <span class="chevron text-green-700">&#9660;</span>
+                            </div>
+                            <div class="card-content"><p class="text-gray-600">Quem é a IA? "Atue como um desenvolvedor Python Sênior..."</p></div>
+                        </div>
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing2">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-green-700">Contexto</h4>
+                                <span class="chevron text-green-700">&#9660;</span>
+                            </div>
+                            <div class="card-content"><p class="text-gray-600">Qual é o cenário? "Estou criando uma API com o framework FastAPI..."</p></div>
+                        </div>
+                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing3">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-green-700">Tarefa</h4>
+                                <span class="chevron text-green-700">&#9660;</span>
+                            </div>
+                            <div class="card-content"><p class="text-gray-600">O que fazer? "Escreva uma função que..."</p></div>
+                        </div>
+                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing4">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-green-700">Formato</h4>
+                                <span class="chevron text-green-700">&#9660;</span>
+                            </div>
+                            <div class="card-content"><p class="text-gray-600">Como deve ser a resposta? "Retorne em formato JSON..."</p></div>
+                        </div>
+                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing5">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-green-700">Exemplos</h4>
+                                <span class="chevron text-green-700">&#9660;</span>
+                            </div>
+                            <div class="card-content"><p class="text-gray-600">Mostre o que você quer. "Se a entrada for 'a', a saída deve ser 'b'..."</p></div>
+                        </div>
+                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing6">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-green-700">Restrições</h4>
+                                <span class="chevron text-green-700">&#9660;</span>
+                            </div>
+                            <div class="card-content"><p class="text-gray-600">O que NÃO fazer? "Não use bibliotecas externas."</p></div>
+                        </div>
+                    </div>
+                    <div class="chart-container mb-12">
+                        <canvas id="promptAnatomyChart"></canvas>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Exemplo na Prática: Comparativo Interativo</h3>
+                    <div class="border rounded-lg p-6 bg-gray-50">
+                        <div id="prompt-example-container">
+                            <div class="prompt-bad">
+                                <h4 class="text-xl font-bold text-red-700 mb-2">👎 Prompt Ruim:</h4>
+                                <code class="block bg-gray-200 text-gray-800 p-4 rounded mb-4">"função pra validar email em javascript"</code>
+                                <p class="font-semibold">Problemas:</p>
+                                <ul class="list-disc list-inside text-gray-700 mb-4">
+                                    <li>Vago e sem contexto.</li>
+                                    <li>Sem formato de saída especificado.</li>
+                                    <li>Informal.</li>
+                                </ul>
+                                <p><strong class="font-semibold">Resultado Provável:</strong> Código genérico, talvez complexo e sem explicação.</p>
+                            </div>
+                        </div>
+                        <button id="toggle-prompt-btn" class="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors">
+                            Ver o Prompt Ideal
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const interactiveCards = document.querySelectorAll('.interactive-card');
+            const togglePromptBtn = document.getElementById('toggle-prompt-btn');
+            const promptContainer = document.getElementById('prompt-example-container');
+
+            const promptGoodHTML = `
+                <div class="prompt-good">
+                    <h4 class="text-xl font-bold text-green-700 mb-2">👍 Prompt Ótimo:</h4>
+                    <div class="bg-gray-200 text-gray-800 p-4 rounded mb-4 text-left">
+                        <p><strong class="text-purple-700">[Persona]</strong> "Atue como um dev Front-End Sênior."</p>
+                        <p><strong class="text-blue-700">[Contexto]</strong> "Estou criando um formulário de cadastro em JavaScript puro."</p>
+                        <p><strong class="text-orange-700">[Tarefa]</strong> "Escreva uma função \`validarEmail\` que recebe uma string e retorna \`true\` ou \`false\`. A validação deve checar apenas a presença de um '@' e de um '.' após o '@'."</p>
+                        <p><strong class="text-pink-700">[Formato]</strong> "Retorne o código em um bloco formatado, com comentários explicando a lógica."</p>
+                        <p><strong class="text-red-700">[Restrições]</strong> "Não use expressões regulares (regex)."</p>
+                    </div>
+                    <p><strong class="font-semibold">Resultado Provável:</strong> Código limpo, comentado, fácil de entender e que faz exatamente o que foi pedido.</p>
+                </div>`;
+
+            const promptBadHTML = `
+                <div class="prompt-bad">
+                    <h4 class="text-xl font-bold text-red-700 mb-2">👎 Prompt Ruim:</h4>
+                    <code class="block bg-gray-200 text-gray-800 p-4 rounded mb-4">"função pra validar email em javascript"</code>
+                    <p class="font-semibold">Problemas:</p>
+                    <ul class="list-disc list-inside text-gray-700 mb-4">
+                        <li>Vago e sem contexto.</li>
+                        <li>Sem formato de saída especificado.</li>
+                        <li>Informal.</li>
+                    </ul>
+                    <p><strong class="font-semibold">Resultado Provável:</strong> Código genérico, talvez complexo e sem explicação.</p>
+                </div>`;
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    link.classList.add('active');
+
+                    contentSections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            interactiveCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('open');
+                });
+            });
+
+            if (togglePromptBtn) {
+                let isGoodPrompt = false;
+                togglePromptBtn.addEventListener('click', () => {
+                    isGoodPrompt = !isGoodPrompt;
+                    if (isGoodPrompt) {
+                        promptContainer.innerHTML = promptGoodHTML;
+                        togglePromptBtn.textContent = 'Ver o Prompt Ruim';
+                        togglePromptBtn.classList.replace('bg-blue-600', 'bg-gray-600');
+                        togglePromptBtn.classList.replace('hover:bg-blue-700', 'hover:bg-gray-700');
+                    } else {
+                        promptContainer.innerHTML = promptBadHTML;
+                        togglePromptBtn.textContent = 'Ver o Prompt Ideal';
+                        togglePromptBtn.classList.replace('bg-gray-600', 'bg-blue-600');
+                        togglePromptBtn.classList.replace('hover:bg-gray-700', 'hover:bg-blue-700');
+                    }
+                });
+            }
+
+            const ctx = document.getElementById('promptAnatomyChart')?.getContext('2d');
+            if(ctx) {
+                const longLabelPlugin = {
+                    id: 'longLabelPlugin',
+                    afterDraw: (chart) => {
+                        const {
+                            ctx,
+                            chartArea: { width, height }
+                        } = chart;
+                        chart.data.datasets.forEach((dataset, i) => {
+                            chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
+                                const { x, y } = datapoint.getCenterPoint();
+                                const { startAngle, endAngle } = datapoint;
+                                const midAngle = startAngle + (endAngle - startAngle) / 2;
+                                let label = chart.data.labels[index];
+                                const max_len = 16;
+                                let lines = [];
+
+                                if (label.length > max_len) {
+                                    let words = label.split(" ");
+                                    let currentLine = "";
+                                    for (let i = 0; i < words.length; i++) {
+                                        let testLine = currentLine + words[i] + " ";
+                                        if (testLine.length > max_len) {
+                                            lines.push(currentLine.trim());
+                                            currentLine = words[i] + " ";
+                                        } else {
+                                            currentLine = testLine;
+                                        }
+                                    }
+                                    lines.push(currentLine.trim());
+                                } else {
+                                    lines.push(label);
+                                }
+                                
+                                const radius = chart.getDatasetMeta(i).data[0].outerRadius;
+                                const textX = x + (radius * 0.7) * Math.cos(midAngle);
+                                const textY = y + (radius * 0.7) * Math.sin(midAngle);
+                                
+                                ctx.fillStyle = '#fff';
+                                ctx.font = 'bold 12px Inter';
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'middle';
+                                lines.forEach((line, j) => {
+                                    ctx.fillText(line, textX, textY + (j * 14));
+                                });
+                            });
+                        });
+                    }
+                };
+
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Persona', 'Contexto', 'Tarefa', 'Formato', 'Exemplos', 'Restrições'],
+                        datasets: [{
+                            label: 'Ingredientes de um Prompt',
+                            data: [1, 1, 1, 1, 1, 1],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(16, 185, 129, 0.7)',
+                                'rgba(239, 68, 68, 0.7)',
+                                'rgba(249, 115, 22, 0.7)',
+                                'rgba(139, 92, 246, 0.7)',
+                                'rgba(99, 102, 241, 0.7)'
+                            ],
+                            borderColor: '#f8f7f4',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        family: 'Inter',
+                                        size: 14,
+                                    },
+                                    color: '#3f3c36'
+                                }
+                            },
+                            tooltip: {
+                                enabled: true,
+                                titleFont: { family: 'Inter', weight: 'bold' },
+                                bodyFont: { family: 'Inter' }
+                            },
+                            longLabelPlugin
+                        },
+                        cutout: '50%',
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
