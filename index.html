@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,86 +20,107 @@
             background-color: #f8f7f4;
             color: #3f3c36;
         }
+
         .nav-link {
             transition: all 0.2s ease-in-out;
             border-bottom: 2px solid transparent;
         }
+
         .nav-link.active {
             border-bottom-color: #2563eb;
             color: #2563eb;
             font-weight: 500;
         }
+
         .nav-link:hover {
             color: #2563eb;
         }
+
         .content-section {
             display: none;
         }
+
         .content-section.active {
             display: block;
         }
+
         .interactive-card {
             transition: all 0.3s ease-in-out;
             cursor: pointer;
         }
+
         .interactive-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
+
         .card-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
         }
+
         .interactive-card.open .card-content {
             max-height: 500px;
             padding-top: 1rem;
         }
+
         .interactive-card.open .chevron {
             transform: rotate(180deg);
         }
+
         .chevron {
             transition: transform 0.3s ease-in-out;
         }
+
         .chart-container {
-            position: relative; 
-            width: 100%; 
-            max-width: 400px; 
-            margin-left: auto; 
-            margin-right: auto; 
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
             height: 300px;
             max-height: 350px;
         }
-        @media (min-width: 768px) { 
-            .chart-container { 
+
+        @media (min-width: 768px) {
+            .chart-container {
                 height: 350px;
-            } 
+            }
         }
     </style>
 </head>
+
 <body class="antialiased">
 
     <div class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
 
         <header class="text-center mb-10 border-b border-gray-200 pb-6">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800">Inteligência Artificial: Seu Novo Copiloto de Desenvolvimento</h1>
-            <p class="mt-4 text-lg text-gray-600">Um guia interativo sobre boas práticas, ética e a arte do prompt perfeito.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800">Inteligência Artificial: Seu Novo Copiloto de
+                Desenvolvimento</h1>
+            <p class="mt-4 text-lg text-gray-600">Um guia interativo sobre boas práticas, ética e a arte do prompt
+                perfeito.</p>
         </header>
 
         <nav class="flex justify-center items-center space-x-4 sm:space-x-8 mb-12">
             <a href="#" class="nav-link text-gray-600 py-2 px-1 text-lg active" data-target="inicio">Início</a>
             <a href="#" class="nav-link text-gray-600 py-2 px-1 text-lg" data-target="etica">Ética no Uso</a>
             <a href="#" class="nav-link text-gray-600 py-2 px-1 text-lg" data-target="prompts">A Arte do Prompt</a>
+            <a href="#" class="nav-link text-gray-600 py-2 px-1 text-lg" data-target="atividades">Atividades</a>
         </nav>
 
         <main>
             <section id="inicio" class="content-section active">
                 <div class="bg-white rounded-lg shadow-sm p-8 animate-fade-in">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">O que veremos hoje?</h2>
-                    <p class="text-gray-700 mb-8 text-lg">Esta aplicação interativa foi projetada para transformar a maneira como você entende e utiliza a Inteligência Artificial. Navegue pelas seções para descobrir os princípios éticos fundamentais e aprender a arte de criar prompts eficazes, transformando a IA em uma poderosa aliada no seu dia a dia de desenvolvimento.</p>
+                    <p class="text-gray-700 mb-8 text-lg">Esta aplicação interativa foi projetada para transformar a
+                        maneira como você entende e utiliza a Inteligência Artificial. Navegue pelas seções para
+                        descobrir os princípios éticos fundamentais e aprender a arte de criar prompts eficazes,
+                        transformando a IA em uma poderosa aliada no seu dia a dia de desenvolvimento.</p>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                            <h3 class="text-2xl font-semibold text-blue-800 mb-3">1. A Ética e os Bons Costumes no Uso da IA</h3>
+                            <h3 class="text-2xl font-semibold text-blue-800 mb-3">1. A Ética e os Bons Costumes no Uso
+                                da IA</h3>
                             <ul class="list-disc list-inside space-y-2 text-gray-700">
                                 <li>O papel da IA no nosso trabalho.</li>
                                 <li>Os 5 Pilares do Uso Consciente.</li>
@@ -106,7 +128,8 @@
                             </ul>
                         </div>
                         <div class="bg-green-50 border border-green-200 rounded-lg p-6">
-                            <h3 class="text-2xl font-semibold text-green-800 mb-3">2. A Arte do Prompt: Como Pedir Corretamente</h3>
+                            <h3 class="text-2xl font-semibold text-green-800 mb-3">2. A Arte do Prompt: Como Pedir
+                                Corretamente</h3>
                             <ul class="list-disc list-inside space-y-2 text-gray-700">
                                 <li>O que é um "Prompt"?</li>
                                 <li>A Anatomia de um Prompt Eficaz.</li>
@@ -116,70 +139,89 @@
                     </div>
                 </div>
             </section>
-            
+
             <section id="etica" class="content-section">
                 <div class="bg-white rounded-lg shadow-sm p-8 animate-fade-in">
-                     <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Ética e Boas Práticas</h2>
-                    <p class="text-gray-700 mb-12 text-lg max-w-4xl mx-auto text-center">Nesta seção, exploramos os princípios fundamentais para utilizar a IA de forma responsável. Abordamos a IA como uma ferramenta de auxílio, os pilares éticos que devem guiar seu uso, e um guia prático de ações recomendadas e desaconselhadas para garantir um trabalho seguro e de qualidade.</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Ética e Boas Práticas</h2>
+                    <p class="text-gray-700 mb-12 text-lg max-w-4xl mx-auto text-center">Nesta seção, exploramos os
+                        princípios fundamentais para utilizar a IA de forma responsável. Abordamos a IA como uma
+                        ferramenta de auxílio, os pilares éticos que devem guiar seu uso, e um guia prático de ações
+                        recomendadas e desaconselhadas para garantir um trabalho seguro e de qualidade.</p>
 
                     <div class="bg-gray-50 rounded-lg p-6 mb-10 text-center border">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Uma Assistente Júnior Genial, Mas sem Experiência</h3>
-                        <p class="text-gray-600 max-w-3xl mx-auto">Pense na IA como um programador júnior extremamente rápido, que sabe todas as sintaxes, mas não tem contexto. Ela escreve código, mas não entende o negócio; encontra padrões, mas não sabe a prioridade do cliente. Lembre-se: <strong class="font-semibold text-red-600">a responsabilidade final é sempre SUA.</strong></p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Uma Assistente Júnior Genial, Mas sem
+                            Experiência</h3>
+                        <p class="text-gray-600 max-w-3xl mx-auto">Pense na IA como um programador júnior extremamente
+                            rápido, que sabe todas as sintaxes, mas não tem contexto. Ela escreve código, mas não
+                            entende o negócio; encontra padrões, mas não sabe a prioridade do cliente. Lembre-se:
+                            <strong class="font-semibold text-red-600">a responsabilidade final é sempre SUA.</strong>
+                        </p>
                     </div>
 
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Os 5 Pilares do Uso Consciente</h3>
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar1">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4"
+                            data-card="pillar1">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-blue-700">1. Responsabilidade</h4>
                                 <span class="chevron text-blue-700">&#9660;</span>
                             </div>
                             <div class="card-content">
-                                <p class="text-gray-600">O código é seu. O bug é seu. O mérito é seu. Você é o autor final de qualquer trabalho, mesmo que gerado com auxílio da IA.</p>
+                                <p class="text-gray-600">O código é seu. O bug é seu. O mérito é seu. Você é o autor
+                                    final de qualquer trabalho, mesmo que gerado com auxílio da IA.</p>
                             </div>
                         </div>
-                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar2">
-                             <div class="flex justify-between items-center">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4"
+                            data-card="pillar2">
+                            <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-blue-700">2. Transparência</h4>
                                 <span class="chevron text-blue-700">&#9660;</span>
                             </div>
                             <div class="card-content">
-                                <p class="text-gray-600">Seja honesto sobre o uso da ferramenta, especialmente em ambientes acadêmicos e profissionais. Use-a para acelerar, não para enganar.</p>
+                                <p class="text-gray-600">Seja honesto sobre o uso da ferramenta, especialmente em
+                                    ambientes acadêmicos e profissionais. Use-a para acelerar, não para enganar.</p>
                             </div>
                         </div>
-                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar3">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4"
+                            data-card="pillar3">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-blue-700">3. Privacidade</h4>
-                                 <span class="chevron text-blue-700">&#9660;</span>
+                                <span class="chevron text-blue-700">&#9660;</span>
                             </div>
                             <div class="card-content">
-                                <p class="text-gray-600">NUNCA insira dados sensíveis como senhas, APIs, dados de clientes ou código proprietário. Trate o prompt como um local público.</p>
+                                <p class="text-gray-600">NUNCA insira dados sensíveis como senhas, APIs, dados de
+                                    clientes ou código proprietário. Trate o prompt como um local público.</p>
                             </div>
                         </div>
-                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar4">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4"
+                            data-card="pillar4">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-blue-700">4. Justiça e Imparcialidade</h4>
                                 <span class="chevron text-blue-700">&#9660;</span>
                             </div>
                             <div class="card-content">
-                                <p class="text-gray-600">IAs podem herdar vieses. Revise sempre os resultados para garantir que sejam justos, imparciais e não ofensivos.</p>
+                                <p class="text-gray-600">IAs podem herdar vieses. Revise sempre os resultados para
+                                    garantir que sejam justos, imparciais e não ofensivos.</p>
                             </div>
                         </div>
-                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="pillar5">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4"
+                            data-card="pillar5">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-blue-700">5. Verificação Contínua</h4>
                                 <span class="chevron text-blue-700">&#9660;</span>
                             </div>
-                             <div class="card-content">
-                                <p class="text-gray-600">Nunca confie cegamente. Teste, revise e entenda TUDO que a IA gera. "Confie, mas verifique".</p>
+                            <div class="card-content">
+                                <p class="text-gray-600">Nunca confie cegamente. Teste, revise e entenda TUDO que a IA
+                                    gera. "Confie, mas verifique".</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Na Prática: O Certo e o Errado</h3>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="bg-green-100 border-l-4 border-green-500 p-6 rounded-r-lg">
-                            <h4 class="text-xl font-bold text-green-800 mb-4 flex items-center"><span class="text-2xl mr-3">✅</span> O que FAZER</h4>
+                            <h4 class="text-xl font-bold text-green-800 mb-4 flex items-center"><span
+                                    class="text-2xl mr-3">✅</span> O que FAZER</h4>
                             <ul class="space-y-3 text-green-900">
                                 <li>Usar para ter ideias (brainstorming).</li>
                                 <li>Pedir para explicar código complexo.</li>
@@ -188,7 +230,8 @@
                             </ul>
                         </div>
                         <div class="bg-red-100 border-l-4 border-red-500 p-6 rounded-r-lg">
-                            <h4 class="text-xl font-bold text-red-800 mb-4 flex items-center"><span class="text-2xl mr-3">❌</span> O que NÃO FAZER</h4>
+                            <h4 class="text-xl font-bold text-red-800 mb-4 flex items-center"><span
+                                    class="text-2xl mr-3">❌</span> O que NÃO FAZER</h4>
                             <ul class="space-y-3 text-red-900">
                                 <li>Copiar e colar código sem entender.</li>
                                 <li>Confiar cegamente na resposta.</li>
@@ -199,84 +242,264 @@
                     </div>
                 </div>
             </section>
-            
+
             <section id="prompts" class="content-section">
                 <div class="bg-white rounded-lg shadow-sm p-8 animate-fade-in">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">A Arte do Prompt</h2>
-                    <p class="text-gray-700 mb-12 text-lg max-w-4xl mx-auto text-center">Aprender a "conversar" com a IA é a habilidade chave para obter resultados de alta qualidade. Aqui, detalhamos a estrutura de um prompt eficaz e demonstramos, com um exemplo prático e interativo, como a qualidade do seu pedido impacta diretamente a qualidade da resposta.</p>
+                    <p class="text-gray-700 mb-12 text-lg max-w-4xl mx-auto text-center">Aprender a "conversar" com a IA
+                        é a habilidade chave para obter resultados de alta qualidade. Aqui, detalhamos a estrutura de um
+                        prompt eficaz e demonstramos, com um exemplo prático e interativo, como a qualidade do seu
+                        pedido impacta diretamente a qualidade da resposta.</p>
 
                     <div class="bg-gray-50 rounded-lg p-6 mb-10 text-center border">
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Garbage In, Garbage Out</h3>
-                        <p class="text-gray-600 max-w-3xl mx-auto">"Lixo para Dentro, Lixo para Fora". Um **prompt** é a instrução que você dá para a IA. A qualidade da resposta é **diretamente proporcional** à qualidade do seu pedido. Um prompt vago gera uma resposta inútil; um prompt específico gera uma resposta precisa.</p>
+                        <p class="text-gray-600 max-w-3xl mx-auto">"Lixo para Dentro, Lixo para Fora". Um **prompt** é a
+                            instrução que você dá para a IA. A qualidade da resposta é **diretamente proporcional** à
+                            qualidade do seu pedido. Um prompt vago gera uma resposta inútil; um prompt específico gera
+                            uma resposta precisa.</p>
                     </div>
-                    
+
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">A Anatomia de um Prompt Eficaz</h3>
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing1">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing1">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-green-700">Persona</h4>
                                 <span class="chevron text-green-700">&#9660;</span>
                             </div>
-                            <div class="card-content"><p class="text-gray-600">Quem é a IA? "Atue como um desenvolvedor Python Sênior..."</p></div>
+                            <div class="card-content">
+                                <p class="text-gray-600">Quem é a IA? "Atue como um desenvolvedor Python Sênior..."</p>
+                            </div>
                         </div>
                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing2">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-green-700">Contexto</h4>
                                 <span class="chevron text-green-700">&#9660;</span>
                             </div>
-                            <div class="card-content"><p class="text-gray-600">Qual é o cenário? "Estou criando uma API com o framework FastAPI..."</p></div>
+                            <div class="card-content">
+                                <p class="text-gray-600">Qual é o cenário? "Estou criando uma API com o framework
+                                    FastAPI..."</p>
+                            </div>
                         </div>
-                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing3">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing3">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-green-700">Tarefa</h4>
                                 <span class="chevron text-green-700">&#9660;</span>
                             </div>
-                            <div class="card-content"><p class="text-gray-600">O que fazer? "Escreva uma função que..."</p></div>
+                            <div class="card-content">
+                                <p class="text-gray-600">O que fazer? "Escreva uma função que..."</p>
+                            </div>
                         </div>
-                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing4">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing4">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-green-700">Formato</h4>
                                 <span class="chevron text-green-700">&#9660;</span>
                             </div>
-                            <div class="card-content"><p class="text-gray-600">Como deve ser a resposta? "Retorne em formato JSON..."</p></div>
+                            <div class="card-content">
+                                <p class="text-gray-600">Como deve ser a resposta? "Retorne em formato JSON..."</p>
+                            </div>
                         </div>
-                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing5">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing5">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-green-700">Exemplos</h4>
                                 <span class="chevron text-green-700">&#9660;</span>
                             </div>
-                            <div class="card-content"><p class="text-gray-600">Mostre o que você quer. "Se a entrada for 'a', a saída deve ser 'b'..."</p></div>
+                            <div class="card-content">
+                                <p class="text-gray-600">Mostre o que você quer. "Se a entrada for 'a', a saída deve ser
+                                    'b'..."</p>
+                            </div>
                         </div>
-                         <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing6">
+                        <div class="interactive-card bg-white border border-gray-200 rounded-lg p-4" data-card="ing6">
                             <div class="flex justify-between items-center">
                                 <h4 class="text-lg font-semibold text-green-700">Restrições</h4>
                                 <span class="chevron text-green-700">&#9660;</span>
                             </div>
-                            <div class="card-content"><p class="text-gray-600">O que NÃO fazer? "Não use bibliotecas externas."</p></div>
+                            <div class="card-content">
+                                <p class="text-gray-600">O que NÃO fazer? "Não use bibliotecas externas."</p>
+                            </div>
                         </div>
                     </div>
                     <div class="chart-container mb-12">
                         <canvas id="promptAnatomyChart"></canvas>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Exemplo na Prática: Comparativo Interativo</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Exemplo na Prática: Comparativo
+                        Interativo</h3>
                     <div class="border rounded-lg p-6 bg-gray-50">
                         <div id="prompt-example-container">
                             <div class="prompt-bad">
                                 <h4 class="text-xl font-bold text-red-700 mb-2">👎 Prompt Ruim:</h4>
-                                <code class="block bg-gray-200 text-gray-800 p-4 rounded mb-4">"função pra validar email em javascript"</code>
+                                <code
+                                    class="block bg-gray-200 text-gray-800 p-4 rounded mb-4">"função pra validar email em javascript"</code>
                                 <p class="font-semibold">Problemas:</p>
                                 <ul class="list-disc list-inside text-gray-700 mb-4">
                                     <li>Vago e sem contexto.</li>
                                     <li>Sem formato de saída especificado.</li>
                                     <li>Informal.</li>
                                 </ul>
-                                <p><strong class="font-semibold">Resultado Provável:</strong> Código genérico, talvez complexo e sem explicação.</p>
+                                <p><strong class="font-semibold">Resultado Provável:</strong> Código genérico, talvez
+                                    complexo e sem explicação.</p>
                             </div>
                         </div>
-                        <button id="toggle-prompt-btn" class="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors">
+                        <button id="toggle-prompt-btn"
+                            class="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors">
                             Ver o Prompt Ideal
                         </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="atividades" class="content-section">
+                <div class="bg-white rounded-lg shadow-sm p-8 animate-fade-in">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Pratique a Criação de Prompts</h2>
+                    <p class="text-gray-700 mb-12 text-lg max-w-4xl mx-auto text-center">Agora é sua vez de praticar!
+                        Para cada ingrediente de um bom prompt, apresentamos um cenário. Tente escrever a parte
+                        correspondente do prompt no campo de texto e depois compare com nosso exemplo.</p>
+                    <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                        <aside class="lg:col-span-4 mb-8 lg:mb-0">
+                            <div id="activity-nav" class="flex flex-col space-y-2">
+                                <button data-activity="persona"
+                                    class="activity-btn text-left p-4 rounded-lg transition-colors duration-200">1.
+                                    Persona</button>
+                                <button data-activity="contexto"
+                                    class="activity-btn text-left p-4 rounded-lg transition-colors duration-200">2.
+                                    Contexto</button>
+                                <button data-activity="tarefa"
+                                    class="activity-btn text-left p-4 rounded-lg transition-colors duration-200">3.
+                                    Tarefa</button>
+                                <button data-activity="formato"
+                                    class="activity-btn text-left p-4 rounded-lg transition-colors duration-200">4.
+                                    Formato</button>
+                                <button data-activity="exemplos"
+                                    class="activity-btn text-left p-4 rounded-lg transition-colors duration-200">5.
+                                    Exemplos</button>
+                                <button data-activity="restricoes"
+                                    class="activity-btn text-left p-4 rounded-lg transition-colors duration-200">6.
+                                    Restrições</button>
+                            </div>
+                        </aside>
+                        <main class="lg:col-span-8">
+                            <div id="activity-content-container">
+                                <div id="activity-persona" class="activity-content">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Praticando: Persona</h3>
+                                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+                                        <p class="font-bold">Cenário:</p>
+                                        <p>Você precisa que a IA gere uma explicação simples sobre o que é uma API para
+                                            um público não-técnico.</p>
+                                    </div>
+                                    <label for="persona-input" class="block font-semibold mb-2">Sua
+                                        vez:</label><textarea id="persona-input" rows="3"
+                                        class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 transition"
+                                        placeholder="Ex: 'Atue como...'"></textarea>
+                                    <div class="mt-6">
+                                        <p class="font-semibold mb-2">Nosso Exemplo:</p>
+                                        <div class="bg-gray-100 p-4 rounded-lg border">
+                                            <p class="text-gray-700 italic">"Aja como um professor de tecnologia
+                                                paciente e didático, capaz de explicar conceitos complexos de forma
+                                                simples e com analogias."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="activity-contexto" class="activity-content">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Praticando: Contexto</h3>
+                                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+                                        <p class="font-bold">Cenário:</p>
+                                        <p>Você está desenvolvendo um e-commerce de plantas e precisa de uma função
+                                            Python para calcular o preço final de um item, incluindo um desconto.</p>
+                                    </div>
+                                    <label for="contexto-input" class="block font-semibold mb-2">Sua
+                                        vez:</label><textarea id="contexto-input" rows="3"
+                                        class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 transition"
+                                        placeholder="Ex: 'Estou trabalhando em...'"></textarea>
+                                    <div class="mt-6">
+                                        <p class="font-semibold mb-2">Nosso Exemplo:</p>
+                                        <div class="bg-gray-100 p-4 rounded-lg border">
+                                            <p class="text-gray-700 italic">"Estou trabalhando no módulo de carrinho de
+                                                compras de um e-commerce feito em Python. Já tenho o preço base do
+                                                produto e a porcentagem de desconto como variáveis."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="activity-tarefa" class="activity-content">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Praticando: Tarefa</h3>
+                                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+                                        <p class="font-bold">Cenário:</p>
+                                        <p>Continuando com o e-commerce, você precisa que a IA escreva a função
+                                            específica.</p>
+                                    </div>
+                                    <label for="tarefa-input" class="block font-semibold mb-2">Sua vez:</label><textarea
+                                        id="tarefa-input" rows="3"
+                                        class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 transition"
+                                        placeholder="Ex: 'Escreva uma função...'"></textarea>
+                                    <div class="mt-6">
+                                        <p class="font-semibold mb-2">Nosso Exemplo:</p>
+                                        <div class="bg-gray-100 p-4 rounded-lg border">
+                                            <p class="text-gray-700 italic">"Escreva uma função em Python chamada
+                                                `calcular_preco_final` que recebe dois argumentos: `preco_base` (um
+                                                float) e `desconto_percentual` (um int), e retorna o preço com o
+                                                desconto aplicado."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="activity-formato" class="activity-content">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Praticando: Formato</h3>
+                                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+                                        <p class="font-bold">Cenário:</p>
+                                        <p>Você quer comparar 3 frameworks JavaScript (React, Vue, Angular) para um novo
+                                            projeto e precisa da resposta de forma estruturada.</p>
+                                    </div>
+                                    <label for="formato-input" class="block font-semibold mb-2">Sua
+                                        vez:</label><textarea id="formato-input" rows="3"
+                                        class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 transition"
+                                        placeholder="Ex: 'Retorne a resposta como...'"></textarea>
+                                    <div class="mt-6">
+                                        <p class="font-semibold mb-2">Nosso Exemplo:</p>
+                                        <div class="bg-gray-100 p-4 rounded-lg border">
+                                            <p class="text-gray-700 italic">"Gere a resposta em formato de tabela
+                                                Markdown com três colunas: 'Framework', 'Principal Vantagem' e
+                                                'Principal Desvantagem'."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="activity-exemplos" class="activity-content">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Praticando: Exemplos</h3>
+                                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+                                        <p class="font-bold">Cenário:</p>
+                                        <p>Você precisa de uma função que inverte a ordem das palavras em uma frase.</p>
+                                    </div>
+                                    <label for="exemplos-input" class="block font-semibold mb-2">Sua
+                                        vez:</label><textarea id="exemplos-input" rows="3"
+                                        class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 transition"
+                                        placeholder="Ex: 'Por exemplo, se a entrada for...'"></textarea>
+                                    <div class="mt-6">
+                                        <p class="font-semibold mb-2">Nosso Exemplo:</p>
+                                        <div class="bg-gray-100 p-4 rounded-lg border">
+                                            <p class="text-gray-700 italic">"Por exemplo, se a entrada for 'Eu amo
+                                                programar', a saída deve ser 'programar amo Eu'."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="activity-restricoes" class="activity-content">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Praticando: Restrições</h3>
+                                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+                                        <p class="font-bold">Cenário:</p>
+                                        <p>Para a mesma função de cálculo de preço do e-commerce, você quer garantir que
+                                            o código seja simples e não use bibliotecas externas.</p>
+                                    </div>
+                                    <label for="restricoes-input" class="block font-semibold mb-2">Sua
+                                        vez:</label><textarea id="restricoes-input" rows="3"
+                                        class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 transition"
+                                        placeholder="Ex: 'Não use...'"></textarea>
+                                    <div class="mt-6">
+                                        <p class="font-semibold mb-2">Nosso Exemplo:</p>
+                                        <div class="bg-gray-100 p-4 rounded-lg border">
+                                            <p class="text-gray-700 italic">"Não use nenhuma biblioteca externa como a
+                                                `Decimal` ou `NumPy`, apenas operações matemáticas básicas do Python."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
                     </div>
                 </div>
             </section>
@@ -290,6 +513,8 @@
             const interactiveCards = document.querySelectorAll('.interactive-card');
             const togglePromptBtn = document.getElementById('toggle-prompt-btn');
             const promptContainer = document.getElementById('prompt-example-container');
+            const activityBtns = document.querySelectorAll('.activity-btn');
+            const activityContents = document.querySelectorAll('.activity-content');
 
             const promptGoodHTML = `
                 <div class="prompt-good">
@@ -359,8 +584,30 @@
                 });
             }
 
+            activityBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetActivity = btn.dataset.activity;
+
+                    activityBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    activityContents.forEach(content => {
+                        if (content.id === `activity-${targetActivity}`) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            if (activityBtns.length > 0) {
+                activityBtns[0].classList.add('active');
+                activityContents[0].classList.add('active');
+            }
+
             const ctx = document.getElementById('promptAnatomyChart')?.getContext('2d');
-            if(ctx) {
+            if (ctx) {
                 const longLabelPlugin = {
                     id: 'longLabelPlugin',
                     afterDraw: (chart) => {
@@ -393,11 +640,11 @@
                                 } else {
                                     lines.push(label);
                                 }
-                                
+
                                 const radius = chart.getDatasetMeta(i).data[0].outerRadius;
                                 const textX = x + (radius * 0.7) * Math.cos(midAngle);
                                 const textY = y + (radius * 0.7) * Math.sin(midAngle);
-                                
+
                                 ctx.fillStyle = '#fff';
                                 ctx.font = 'bold 12px Inter';
                                 ctx.textAlign = 'center';
@@ -458,4 +705,5 @@
     </script>
 
 </body>
+
 </html>
